@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script type="text/javascript" src="../static/vue.js"></script>
+    <script type="text/javascript" src="../static/axios.js"></script>
+
+</head>
+<body>
+
+<div id="login">
+    <form action="#" novalidate>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Enter your Name" v-model="username"><br>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" placeholder="Enter your Password" v-model="password"><br>
+        <br>
+
+        <button type="button" v-on:click="login">Apply</button>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    var login = new Vue({
+        el: '#login',
+        data:{
+            username: '',
+            password: ''
+        },
+        methods: {
+            login: function () {
+               axios.post('http://127.0.0.1:5000/login',{
+                   username: this.username,
+                   passsword: this.passsword
+               }).then(function (response) {
+                   console.log(response)
+               }).catch(function (error) {
+                   console.log(error.response)
+               })
+
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
